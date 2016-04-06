@@ -100,13 +100,4 @@ RUN mkdir -p /usr/local/ophidia/extra && \
     ./configure --prefix=/usr/local/ophidia/oph-terminal && \
     make && \
     make install    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
