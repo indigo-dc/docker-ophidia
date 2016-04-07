@@ -19,6 +19,7 @@ RUN yum -y groupinstall 'development tools' && \
     gtk2\* \
     httpd \
     jansson\* \
+    libcurl-devel \
     libssh2\* \
     libtool-ltdl\* \
     libxml2\* \
@@ -89,9 +90,8 @@ RUN mkdir -p /usr/local/ophidia/extra && \
     ./bootstrap && \
     ./configure --prefix=/usr/local/ophidia/oph-cluster/oph-analytics-framework --enable-parallel-netcdf --with-netcdf-path=/usr/local/ophidia/extra/ --with-web-server-path=/var/www/html/ophidia --with-web-server-url=http://127.0.0.1/ophidia && \
     make && \
-    make install
-
-RUN cd /usr/local/ophidia/src/ophidia-server && \
+    make install && \
+    cd /usr/local/ophidia/src/ophidia-server && \
     ./bootstrap && \
     ./configure --prefix=/usr/local/ophidia/oph-server --with-framework-path=/usr/local/ophidia/oph-cluster/oph-analytics-framework --with-soapcpp2-path=/usr/local/ophidia/extra --enable-webaccess --with-web-server-path=/var/www/html/ophidia --with-web-server-url=http://127.0.0.1/ophidia && \
     make && \
