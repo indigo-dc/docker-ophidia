@@ -75,8 +75,9 @@ RUN mkdir -p /usr/local/ophidia/extra && \
     cd /usr/local/netcdf-4.4.0 && \
     ./configure --prefix=/usr/local/ophidia/extra --enable-parallel-tests && \
     make && \
-    make install && \
-    cd /usr/local/gsoap-2.8 && \
+    make install
+
+RUN cd /usr/local/gsoap-2.8 && \
     ./configure --prefix=/usr/local/ophidia/extra && \
     make && \
     make install && \
