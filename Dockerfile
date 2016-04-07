@@ -54,11 +54,11 @@ RUN mkdir -p /usr/local/ophidia/extra && \
     wget http://ftp.gnu.org/gnu/libmatheval/libmatheval-1.1.11.tar.gz && \
     wget http://www.hdfgroup.org/ftp/HDF5/current/src/hdf5-1.8.16.tar.gz && \
     wget ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4.4.0.tar.gz && \
-    wget http://www.lip.pt/~david/gsoap_2.8.29.zip && \
+    wget http://www.lip.pt/~david/gsoap_2.8.27.zip && \
     tar zxvf libmatheval-1.1.11.tar.gz && \
     tar zxvf hdf5-1.8.16.tar.gz && \
     tar zxvf netcdf-4.4.0.tar.gz && \
-    unzip gsoap_2.8.29.zip && \
+    unzip gsoap_2.8.27.zip && \
     cd /usr/local/ophidia/src && \
     git clone https://github.com/OphidiaBigData/ophidia-primitives && \
     git clone https://github.com/OphidiaBigData/ophidia-analytics-framework && \
