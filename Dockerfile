@@ -70,35 +70,56 @@ RUN mkdir -p /usr/local/ophidia/extra && \
     make && \
     make install && \
     cd /usr/local/hdf5-1.8.16 && \
-    ./configure --prefix=/usr/local/ophidia/extra --enable-parallel && \
+    ./configure \
+        --prefix=/usr/local/ophidia/extra \
+        --enable-parallel && \
     make && \
     make install && \
     cd /usr/local/netcdf-4.4.0 && \
-    ./configure --prefix=/usr/local/ophidia/extra --enable-parallel-tests && \
+    ./configure \
+        --prefix=/usr/local/ophidia/extra \
+        --enable-parallel-tests && \
     make && \
     make install && \
     cd /usr/local/gsoap-2.8 && \
-    ./configure --prefix=/usr/local/ophidia/extra && \
+    ./configure \
+        --prefix=/usr/local/ophidia/extra && \
     make && \
     make install && \
     cd /usr/local/ophidia/src/ophidia-primitives && \
     ./bootstrap && \
-    ./configure --prefix=/usr/local/ophidia/oph-cluster/oph-primitives --with-matheval-path=/usr/local/ophidia/extra/ && \
+    ./configure \
+        --prefix=/usr/local/ophidia/oph-cluster/oph-primitives \
+        --with-matheval-path=/usr/local/ophidia/extra/ && \
     make && \
     make install && \
     cd /usr/local/ophidia/src/ophidia-analytics-framework && \
     ./bootstrap && \
-    ./configure --prefix=/usr/local/ophidia/oph-cluster/oph-analytics-framework --enable-parallel-netcdf --with-netcdf-path=/usr/local/ophidia/extra/ --with-web-server-path=/var/www/html/ophidia --with-web-server-url=http://127.0.0.1/ophidia && \
+    ./configure \
+        --prefix=/usr/local/ophidia/oph-cluster/oph-analytics-framework \
+        --enable-parallel-netcdf \
+        --with-netcdf-path=/usr/local/ophidia/extra \
+        --with-web-server-path=/var/www/html/ophidia \
+        --with-web-server-url=http://127.0.0.1/ophidia && \
     make && \
     make install && \
     cd /usr/local/ophidia/src/ophidia-server && \
     ./bootstrap && \
-    ./configure --prefix=/usr/local/ophidia/oph-server --with-framework-path=/usr/local/ophidia/oph-cluster/oph-analytics-framework --with-soapcpp2-path=/usr/local/ophidia/extra --enable-webaccess --with-web-server-path=/var/www/html/ophidia --with-web-server-url=http://127.0.0.1/ophidia && \
+    ./configure \
+        --prefix=/usr/local/ophidia/oph-server \
+        --with-framework-path=/usr/local/ophidia/oph-cluster/oph-analytics-framework \
+        --with-soapcpp2-path=/usr/local/ophidia/extra \
+        --enable-webaccess \
+        --with-web-server-path=/var/www/html/ophidia \
+        --with-web-server-url=http://127.0.0.1/ophidia && \
     make && \
     make install && \
     cd /usr/local/ophidia/src/ophidia-terminal && \
     ./bootstrap && \
-    ./configure --prefix=/usr/local/ophidia/oph-terminal && \
+    ./configure \
+        --prefix=/usr/local/ophidia/oph-terminal && \
     make && \
     make install    
 
+COPY entrypoint.sh /
+CMD [ "/entrypoint.sh"]
