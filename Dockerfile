@@ -1,8 +1,9 @@
 # docker build -t ophidia_all .
 
 FROM centos:centos6
-
 MAINTAINER Mario David <mariojmdavid@gmail.com>
+LABEL version="1.0.0"
+LABEL description="Container image to run the Ophidia framework. (http://ophidia.cmcc.it)"
 
 RUN yum -y install epel-release && \
     yum -y install http://repo.mysql.com/mysql-community-release-el6-7.noarch.rpm
@@ -31,6 +32,7 @@ RUN yum -y groupinstall 'development tools' && \
     php \
     policycoreutils-python \
     readline\* \
+	openssh-server \
     wget
 
 ENV CC /usr/lib64/mpich/bin/mpicc
@@ -60,11 +62,18 @@ RUN mkdir -p /usr/local/ophidia/extra && \
     tar zxvf hdf5-1.8.16.tar.gz && \
     tar zxvf netcdf-4.4.0.tar.gz && \
     unzip gsoap_2.8.27.zip && \
+	git clone git://github.com/SchedMD/slurm.git && \
     cd /usr/local/ophidia/src && \
     git clone https://github.com/OphidiaBigData/ophidia-primitives && \
     git clone https://github.com/OphidiaBigData/ophidia-analytics-framework && \
     git clone https://github.com/OphidiaBigData/ophidia-server && \
-    git clone https://github.com/OphidiaBigData/ophidia-terminal && \
+    git clone https://github.com/OphidiaBigData/ophidia-terminal
+
+RUN cd /usr/local/slurm/ && \
+	./configure --prefix=/usr/local/ophidia/extra/ --sysconfdir=/usr/local/ophidia/extra/etc/ && \
+	make && \
+	make install && \
+	mkdir /usr/local/ophidia/extra/etc && \
     cd /usr/local/libmatheval-1.1.11 && \
     ./configure --prefix=/usr/local/ophidia/extra  && \
     make && \
@@ -85,8 +94,10 @@ RUN mkdir -p /usr/local/ophidia/extra && \
     ./configure \
         --prefix=/usr/local/ophidia/extra && \
     make && \
-    make install && \
-    cd /usr/local/ophidia/src/ophidia-primitives && \
+    make install
+
+RUN cd /usr/local/ophidia/src/ophidia-primitives && \
+	git checkout devel && \
     ./bootstrap && \
     ./configure \
         --prefix=/usr/local/ophidia/oph-cluster/oph-primitives \
@@ -94,6 +105,7 @@ RUN mkdir -p /usr/local/ophidia/extra && \
     make && \
     make install && \
     cd /usr/local/ophidia/src/ophidia-analytics-framework && \
+	git checkout devel && \
     ./bootstrap && \
     ./configure \
         --prefix=/usr/local/ophidia/oph-cluster/oph-analytics-framework \
@@ -104,6 +116,7 @@ RUN mkdir -p /usr/local/ophidia/extra && \
     make && \
     make install && \
     cd /usr/local/ophidia/src/ophidia-server && \
+	git checkout devel && \
     ./bootstrap && \
     ./configure \
         --prefix=/usr/local/ophidia/oph-server \
@@ -114,12 +127,18 @@ RUN mkdir -p /usr/local/ophidia/extra && \
         --with-web-server-url=http://127.0.0.1/ophidia && \
     make && \
     make install && \
+	cp -r authz/ /usr/local/ophidia/oph-server/ && \
+	mkdir  /usr/local/ophidia/oph-server/authz/sessions && \
     cd /usr/local/ophidia/src/ophidia-terminal && \
+	git checkout devel && \
     ./bootstrap && \
     ./configure \
         --prefix=/usr/local/ophidia/oph-terminal && \
     make && \
     make install    
 
+EXPOSE 80 443 11732
 COPY entrypoint.sh /
-CMD [ "/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
+CMD [ "/bin/bash" ]
+
