@@ -7,6 +7,12 @@ All services in image
 * Ophidia: http://ophidia.cmcc.it/documentation/
 * Installation and configuration: http://ophidia.cmcc.it/documentation/admin/index.html
 
+## Run the docker image
+
+```
+
+```
+
 ## The following commands define a complete test session that can be run through the Ophidia terminal
 
 ```
