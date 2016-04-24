@@ -4,12 +4,12 @@ All services in image
 
 ## Further documentation
 
-Ophidia: http://ophidia.cmcc.it/documentation/
-
-Installation and configuration: http://ophidia.cmcc.it/documentation/admin/index.html
+* Ophidia: http://ophidia.cmcc.it/documentation/
+* Installation and configuration: http://ophidia.cmcc.it/documentation/admin/index.html
 
 ## The following commands define a complete test session that can be run through the Ophidia terminal
 
+```
 oph_term> oph_list level=2;
 oph_term> oph_man function=oph_list;
 oph_term> oph_createcontainer container=test;dim=lat|lon|time;hierarchy=oph_base|oph_base|oph_time;dim_type=double|double|double;
@@ -19,4 +19,5 @@ oph_term> oph_reduce operation=max;
 oph_term> oph_aggregate operation=max;
 oph_term> oph_explorecube
 oph_term> oph_delete cube=[container=test];
-
+```
+
