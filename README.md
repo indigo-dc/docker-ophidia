@@ -13,7 +13,9 @@ All services in image
 $ docker run -it ophidia_all
 ```
 
-## The following commands define a complete test session that can be run through the Ophidia terminal
+## Ophidia terminal test session
+
+The following commands define a complete test session that can be run through the Ophidia terminal
 
 ```
 oph_term> oph_list level=2;
