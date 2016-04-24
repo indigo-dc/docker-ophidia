@@ -10,7 +10,7 @@ All services in image
 ## Run the docker image
 
 ```
-$ docker run ophidia_all
+$ docker run -it ophidia_all
 ```
 
 ## The following commands define a complete test session that can be run through the Ophidia terminal
@@ -25,5 +25,6 @@ oph_term> oph_reduce operation=max;
 oph_term> oph_aggregate operation=max;
 oph_term> oph_explorecube
 oph_term> oph_delete cube=[container=test];
+oph_term> quit
 ```
 
