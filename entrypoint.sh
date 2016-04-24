@@ -150,19 +150,8 @@ SlurmctldLogFile=/var/log/slurmctld.log
 SlurmdDebug=3
 SlurmdLogFile=/var/log/slurmd.log
 # COMPUTE NODES
-NodeName=localhost
-NodeAddr=127.0.0.1
-CPUs=1
-RealMemory=1024
-Sockets=1
-CoresPerSocket=1
-ThreadsPerCore=1
-State=UNKNOWN
-PartitionName=debug
-Nodes=localhost
-Default=YES
-MaxTime=INFINITE
-State=UP
+NodeName=localhost NodeAddr=127.0.0.1 CPUs=1 RealMemory=1024 Sockets=1 CoresPerSocket=1 ThreadsPerCore=1 State=UNKNOWN
+PartitionName=debug Nodes=localhost Default=YES MaxTime=INFINITE State=UP
 EOF
 ) > slurm.conf
 

@@ -10,7 +10,7 @@ All services in image
 ## Run the docker image
 
 ```
-
+$ docker run ophidia_all
 ```
 
 ## The following commands define a complete test session that can be run through the Ophidia terminal
