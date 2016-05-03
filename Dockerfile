@@ -137,7 +137,7 @@ RUN cd /usr/local/ophidia/src/ophidia-primitives && \
     make && \
     make install    
 
-EXPOSE 80 443 11732
+EXPOSE 22 80 443 11732
 COPY entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
 CMD [ "/bin/bash" ]

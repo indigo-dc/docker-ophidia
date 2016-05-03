@@ -1,5 +1,7 @@
 #!/bin/bash
 
+PASS=${UPASS:-oPhidiA10}
+
 ldconfig -n /usr/local/ophidia/extra/lib/
 echo -e "\n\nexport PATH=$PATH:/usr/local/ophidia/extra/bin/" >> ~/.bashrc
 
@@ -154,6 +156,10 @@ NodeName=localhost NodeAddr=127.0.0.1 CPUs=1 RealMemory=1024 Sockets=1 CoresPerS
 PartitionName=debug Nodes=localhost Default=YES MaxTime=INFINITE State=UP
 EOF
 ) > slurm.conf
+
+id -u centos &>/dev/null || \
+    useradd --create-home --shell /bin/bash --user-group --groups adm,sudo centos
+echo "ubuntu:$PASS" | chpasswd
 
 service mysqld start
 service httpd start
