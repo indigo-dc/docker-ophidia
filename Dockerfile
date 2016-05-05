@@ -28,7 +28,7 @@ RUN yum -y groupinstall 'development tools' && \
     mysql-community-server \
     mysql-community-devel \
     munge\* \
-	openssh-server \
+    openssh-server \
     openssl-devel \
     php \
     policycoreutils-python \
