@@ -2,7 +2,7 @@
 
 FROM centos:centos6
 MAINTAINER Mario David <mariojmdavid@gmail.com>
-LABEL version="1.0.0"
+LABEL version="1.0.1"
 LABEL description="Container image to run the Ophidia framework. (http://ophidia.cmcc.it)"
 
 RUN yum -y install epel-release && \
