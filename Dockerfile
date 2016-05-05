@@ -28,11 +28,12 @@ RUN yum -y groupinstall 'development tools' && \
     mysql-community-server \
     mysql-community-devel \
     munge\* \
+	openssh-server \
     openssl-devel \
     php \
     policycoreutils-python \
     readline\* \
-	openssh-server \
+    sudo \
     wget
 
 ENV CC /usr/lib64/mpich/bin/mpicc
