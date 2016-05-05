@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PASS=${UPASS:-oPhidiA10}
+PASS=${UPASS:-1OphiDia0}
 
 ldconfig -n /usr/local/ophidia/extra/lib/
 echo -e "\n\nexport PATH=$PATH:/usr/local/ophidia/extra/bin/" >> ~/.bashrc
@@ -159,7 +159,7 @@ EOF
 
 id -u centos &>/dev/null || \
     useradd --create-home --shell /bin/bash --user-group --groups adm,sudo centos
-echo "ubuntu:$PASS" | chpasswd
+echo "centos:$PASS" | chpasswd
 
 service mysqld start
 service httpd start
