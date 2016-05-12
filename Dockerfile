@@ -141,5 +141,7 @@ RUN cd /usr/local/ophidia/src/ophidia-primitives && \
 EXPOSE 22 80 443 11732
 COPY entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
-CMD [ "/bin/bash" ]
+CMD ["/usr/sbin/sshd", "-D"]
 
+#CMD ["/entrypoint.sh"]
+#CMD [ "/bin/bash" ]

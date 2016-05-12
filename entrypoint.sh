@@ -158,7 +158,7 @@ EOF
 ) > slurm.conf
 
 id -u centos &>/dev/null || \
-    useradd --create-home --shell /bin/bash --user-group --groups adm,sudo centos
+    useradd --create-home --shell /bin/bash --user-group --groups adm centos
 echo "centos:$PASS" | chpasswd
 echo "centos ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
