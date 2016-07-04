@@ -79,7 +79,7 @@ RUN cd /usr/local/slurm/ && \
     ./configure --prefix=/usr/local/ophidia/extra  && \
     make && \
     make install && \
-    cd /usr/local/hdf5-1.8.16 && \
+    cd /usr/local/hdf5-1.8.17 && \
     ./configure \
         --prefix=/usr/local/ophidia/extra \
         --enable-parallel && \
