@@ -158,7 +158,7 @@ EOF
 ) > slurm.conf
 
 id -u centos &>/dev/null || \
-    useradd --create-home --shell /bin/bash --user-group --groups adm,sudo centos
+    useradd --create-home --shell /bin/bash --user-group --groups adm centos
 echo "centos:$PASS" | chpasswd
 echo "centos ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
@@ -189,6 +189,6 @@ echo "INSERT INTO hashost VALUES (1,1);" | \
     mysql -u root ophidiadb
 
 ${OPH_DIR}/oph-server/bin/oph_server -d > /dev/null 2> /dev/null &
-#sleep 2
-#${OPH_DIR}/oph-terminal/bin/oph_term -H 127.0.0.1 -u oph-test -p abcd -P 11732
+sleep 2
+${OPH_DIR}/oph-terminal/bin/oph_term -H 127.0.0.1 -u oph-test -p abcd -P 11732
 exec "$@"

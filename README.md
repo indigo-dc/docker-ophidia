@@ -10,7 +10,7 @@ All services in image
 ## Run the docker image
 
 ```
-$ docker run -it ophidia_all
+$ docker run -it ophidia_all /bin/bash
 ```
 
 ## Ophidia terminal test session
@@ -18,6 +18,7 @@ $ docker run -it ophidia_all
 The following commands define a complete test session that can be run through the Ophidia terminal
 
 ```
+/usr/local/ophidia/oph-terminal/bin/oph_term -H 127.0.0.1 -u oph-test -p abcd -P 11732
 oph_term> oph_list level=2;
 oph_term> oph_man function=oph_list;
 oph_term> oph_createcontainer container=test;dim=lat|lon|time;hierarchy=oph_base|oph_base|oph_time;dim_type=double|double|double;

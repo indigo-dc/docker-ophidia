@@ -2,7 +2,7 @@
 
 FROM centos:centos6
 MAINTAINER Mario David <mariojmdavid@gmail.com>
-LABEL version="1.0.0"
+LABEL version="1.0.2"
 LABEL description="Container image to run the Ophidia framework. (http://ophidia.cmcc.it)"
 
 RUN yum -y install epel-release && \
@@ -28,7 +28,7 @@ RUN yum -y groupinstall 'development tools' && \
     mysql-community-server \
     mysql-community-devel \
     munge\* \
-	openssh-server \
+    openssh-server \
     openssl-devel \
     php \
     policycoreutils-python \
@@ -56,11 +56,11 @@ RUN mkdir -p /usr/local/ophidia/extra && \
     chmod 0400 /etc/munge/munge.key && \
     cd /usr/local && \
     wget http://ftp.gnu.org/gnu/libmatheval/libmatheval-1.1.11.tar.gz && \
-    wget http://www.hdfgroup.org/ftp/HDF5/current/src/hdf5-1.8.16.tar.gz && \
+    wget http://www.hdfgroup.org/ftp/HDF5/current/src/hdf5-1.8.17.tar.gz && \
     wget ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4.4.0.tar.gz && \
     wget http://www.lip.pt/~david/gsoap_2.8.27.zip && \
     tar zxvf libmatheval-1.1.11.tar.gz && \
-    tar zxvf hdf5-1.8.16.tar.gz && \
+    tar zxvf hdf5-1.8.17.tar.gz && \
     tar zxvf netcdf-4.4.0.tar.gz && \
     unzip gsoap_2.8.27.zip && \
 	git clone git://github.com/SchedMD/slurm.git && \
@@ -79,7 +79,7 @@ RUN cd /usr/local/slurm/ && \
     ./configure --prefix=/usr/local/ophidia/extra  && \
     make && \
     make install && \
-    cd /usr/local/hdf5-1.8.16 && \
+    cd /usr/local/hdf5-1.8.17 && \
     ./configure \
         --prefix=/usr/local/ophidia/extra \
         --enable-parallel && \
@@ -140,6 +140,9 @@ RUN cd /usr/local/ophidia/src/ophidia-primitives && \
 
 EXPOSE 22 80 443 11732
 COPY entrypoint.sh /
-ENTRYPOINT ["/entrypoint.sh"]
-CMD [ "/bin/bash" ]
 
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/usr/sbin/sshd", "-D"]
+
+#CMD ["/entrypoint.sh"]
+#CMD [ "/bin/bash" ]
